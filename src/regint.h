@@ -4,7 +4,7 @@
   regint.h -  Oniguruma (regular expression library)
 **********************************************************************/
 /*-
- * Copyright (c) 2002-2023  K.Kosako
+ * Copyright (c) 2002-2024  K.Kosako
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,6 +37,7 @@
 /* #define ONIG_DEBUG_MATCH_COUNTER */
 /* #define ONIG_DEBUG_CALL */
 /* #define ONIG_DONT_OPTIMIZE */
+/* #define ONIG_DEBUG */
 
 /* for byte-code statistical data. */
 /* #define ONIG_DEBUG_STATISTICS */
@@ -47,8 +48,11 @@
     defined(ONIG_DEBUG_STATISTICS)
 #ifndef ONIG_DEBUG
 #define ONIG_DEBUG
-#define DBGFP   stderr
 #endif
+#endif
+
+#ifdef ONIG_DEBUG
+#define DBGFP   stderr
 #endif
 
 #ifndef ONIG_DISABLE_DIRECT_THREADING
@@ -62,6 +66,7 @@
 #define USE_REGSET
 #define USE_CALL
 #define USE_CALLOUT
+#define USE_SKIP_SEARCH
 #define USE_BACKREF_WITH_LEVEL        /* \k<name+n>, \k<name-n> */
 #define USE_WHOLE_OPTIONS
 #define USE_RIGID_CHECK_CAPTURES_IN_EMPTY_REPEAT        /* /(?:()|())*\2/ */
